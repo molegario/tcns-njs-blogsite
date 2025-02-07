@@ -7,6 +7,8 @@ body,
 :root {
   font-family: Arial, Helvetica, sans-serif;
   height: 100%;
+  color: rgb(71, 85, 105);
+  background-color: #aaa;
 }
 
 @layer base {
