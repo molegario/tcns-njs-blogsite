@@ -1,9 +1,3 @@
-// import { auth, currentUser } from "@clerk/nextjs/server";
-// import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-// import { Button } from "@/components/ui/button";
-// import Link from "next/link";
-// import NavbarMain from "../_components/navbar";
-
 const FeaturedPosts = async function () {
   return (
     <>

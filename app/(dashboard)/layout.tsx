@@ -4,8 +4,6 @@ import Footer from "./_components/footer";
 
 const PageLayout = ({ children }: { children: ReactNode }) => {
 
-
-
   return (
     <div className="h-full flex flex-col mt-[75px]">
       <NavbarMain />
@@ -17,9 +15,6 @@ const PageLayout = ({ children }: { children: ReactNode }) => {
       <Footer />
     </div>
   );
-
-
-
 };
 
 export default PageLayout;
