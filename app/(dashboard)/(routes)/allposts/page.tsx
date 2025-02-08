@@ -1,9 +1,9 @@
-import { checkRole } from '@/utils/roles';
+import { checkRole } from "@/lib/roles";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const AllPosts = async function () {
-  const isAdmin = await checkRole('admin');
+  const isAdmin = await checkRole("admin");
   return (
     <>
       <div className="h-[640px] w-full flex flex-col align-middle shadow-sm justify-center">
@@ -11,6 +11,6 @@ const AllPosts = async function () {
       </div>
     </>
   );
-}
+};
 
 export default AllPosts;

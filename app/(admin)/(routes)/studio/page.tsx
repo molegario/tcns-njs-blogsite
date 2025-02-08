@@ -1,7 +1,7 @@
-import { checkRole } from "@/utils/roles";
+import { checkRole } from "@/lib/roles";
 import { redirect } from "next/navigation";
 
-const CreatorPage = async function () {
+const StudioPage = async function () {
   const isAdmin = await checkRole("admin");
 
   if (!isAdmin) {
@@ -11,10 +11,10 @@ const CreatorPage = async function () {
   return (
     <>
       <div className="h-[640px] w-full flex flex-col align-middle shadow-sm justify-center">
-        CREATOR PAGE
+        Studio PAGE
       </div>
     </>
   );
 };
 
-export default CreatorPage;
+export default StudioPage;
