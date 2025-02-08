@@ -6,14 +6,6 @@ const AllPosts = async function () {
   const isAdmin = await checkRole('admin');
   return (
     <>
-      {isAdmin && (
-        <div className="h-[640px] w-full flex flex-col align-middle shadow-sm justify-center">
-          <p>Admin is logged in.</p>
-          <Link href="/creator">
-            <Button>Create Posts</Button>
-          </Link>
-        </div>
-      )}
       <div className="h-[640px] w-full flex flex-col align-middle shadow-sm justify-center">
         ALL POSTS
       </div>

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import NavbarMain from "./_components/navbar";
-import Footer from "./_components/footer";
+import NavbarMain from "@/components/navbar";
+import Footer from "@/components/footer";
 
 const PageLayout = ({ children }: { children: ReactNode }) => {
 
