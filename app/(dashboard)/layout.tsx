@@ -1,20 +1,19 @@
 import { ReactNode } from "react";
-import NavbarMain from "@/components/navbar";
-import Footer from "@/components/footer";
+import { Sidebar } from "./_components/sidebar";
+import { Navbar } from "./_components/navbar";
 
-const PageLayout = ({ children }: { children: ReactNode }) => {
-
+const AdminPageLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="h-full flex flex-col mt-[75px]">
-      <NavbarMain />
-      <div className="flex flex-1">
-        <main className="pt-0 h-full pl-0 flex flex-col justify-center items-center">
-          {children}
-        </main>
+    <div className="h-full">
+      <div className="h-[80px] md:pl-56 fixed inset-y-0 w-full z-50">
+        <Navbar />
       </div>
-      <Footer />
+      <div className="hidden md:flex h-full w-56 flex-col fixed inset-y-0 z-50">
+        <Sidebar />
+      </div>
+      <main className="md:pl-56 h-full">{children}</main>
     </div>
   );
 };
 
-export default PageLayout;
+export default AdminPageLayout;
