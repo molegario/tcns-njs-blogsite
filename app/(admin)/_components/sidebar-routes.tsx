@@ -1,15 +1,17 @@
 "use client";
 
-
-import { FileStack, Pencil, PencilRuler, Star } from "lucide-react";
+import { FileStack, PencilRuler, Star } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 
-const guestRoutes = [
+const adminRoutes = [
   {
     icon: PencilRuler,
     label: "Studio",
     href: "/studio",
   },
+];
+
+const guestRoutes = [
   {
     icon: FileStack,
     label: "All Posts",
@@ -22,22 +24,23 @@ const guestRoutes = [
   },
 ];
 
-export const SidebarRoutes = () => {
+interface SidebarRoutesProps {
+  isAdmin: boolean;
+}
 
-  const routes = guestRoutes;
+export const SidebarRoutes = ({ isAdmin }: SidebarRoutesProps) => {
+  const routes = isAdmin ? adminRoutes.concat(guestRoutes) : guestRoutes;
 
   return (
     <div className="flex flex-col w-full">
-      {
-        routes.map((route)=>(
-          <SidebarItem 
-            key={route.href}
-            label={route.label}
-            icon={route.icon}
-            href={route.href}
-          />
-        ))
-      }
+      {routes.map((route) => (
+        <SidebarItem
+          key={route.href}
+          label={route.label}
+          icon={route.icon}
+          href={route.href}
+        />
+      ))}
     </div>
   );
 };
