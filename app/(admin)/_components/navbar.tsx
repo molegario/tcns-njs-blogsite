@@ -1,12 +1,14 @@
 import { NavbarRoutes } from "@/components/navbar-routes";
 import { MobileSidebar } from "./mobile-sidebar";
+import { checkRole } from "@/lib/roles";
 
+export const Navbar = async function () {
+  const isAdmin = await checkRole("admin");
 
-export const Navbar = () => {
   return (
     <div className="p-4 border-b h-full flex items-center bg-white shadow-sm">
       <MobileSidebar />
-      <NavbarRoutes />
+      <NavbarRoutes isAdmin={isAdmin} />
     </div>
   );
 };

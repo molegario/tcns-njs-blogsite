@@ -4,10 +4,11 @@ export const Logo = () => {
 
   return (
     <Image 
-      height={130}
+      height={51}
       width={130}
       alt="logo"
       src="/logo.png"
+      loading='eager'
     />
   );
 };
