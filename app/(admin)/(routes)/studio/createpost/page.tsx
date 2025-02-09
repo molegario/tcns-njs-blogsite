@@ -43,6 +43,7 @@ const CreatePostPage = () => {
     try {
       const response = await axios.post("/api/posts", values);
       router.push(`posts/${response.data.id}`);
+      toast.success("Post created successfully");
     } catch {
       toast.error("Failed to create article");
     }
