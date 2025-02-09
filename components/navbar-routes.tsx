@@ -17,7 +17,7 @@ export const NavbarRoutes = ({
     <div className="flex gap-x-2 ml-auto">
       <SignedIn>
         {isAdmin && (
-          <Link href="/createpost">
+          <Link href="/studio/createpost">
             <Button>Create Post</Button>
           </Link>
         )}
