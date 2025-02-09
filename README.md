@@ -34,3 +34,20 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Database Initialization/Updates
+
+This project uses a Prisma model layer and connects to a mongodb hosted on an Atlas free account.  The connection string is set in the .env file in the project root.  Note that the schema was adapted from a schema originally coded for mySQL with a Prisma layer for a MongoDB collection.
+
+Whenever the prisma schema is updated remember to:
+
+1. generate the client side models
+```bash
+npx prisma generate
+```
+
+2. push the updated schema to the live remote database
+```bash
+npx prisma db push
+```
+
