@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
+// import Link from "next/link";
 import toast from "react-hot-toast";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
@@ -35,8 +35,9 @@ const formSchema = z.object({
 });
 
 const TitleForm = ({ postId, initialData }: TitleFormProps) => {
-  const [isEditing, setIsEditing] = useState(false);
+  const router = useRouter();
 
+  const [isEditing, setIsEditing] = useState(false);
   const toggleEdit = () => setIsEditing((current) => !current);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -48,12 +49,14 @@ const TitleForm = ({ postId, initialData }: TitleFormProps) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log(values);
-
-    // try {
-
-    // } catch {
-
-    // }
+    try {
+      await axios.patch(`/api/posts/${postId}`, values);
+      toast.success("Title updated successfully");
+      toggleEdit();
+      router.refresh();
+    } catch {
+      toast.error("Failed to update title");
+    }
   };
 
   return (
@@ -76,7 +79,36 @@ const TitleForm = ({ postId, initialData }: TitleFormProps) => {
           <p>{initialData.title}</p>
         </>
       ) : (
-        <></>
+        <>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-4 mt-4"
+            >
+              <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        disabled={isSubmitting}
+                        placeholder="e.g 'Review of Canada's Best Poutine Places in 2025'"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              ></FormField>
+              <div className="flex items-center gap-x-2">
+                <Button disabled={!isValid || isSubmitting} type="submit">
+                  Save
+                </Button>
+              </div>
+            </form>
+          </Form>
+        </>
       )}
     </div>
   );

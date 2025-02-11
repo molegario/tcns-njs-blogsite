@@ -2,10 +2,14 @@ import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-export async function POST(req: Request) {
+export async function PATCH(
+  req: Request,
+  { params }: { params: { postId: string } }
+) {
   try {
     const { userId } = await auth();
-    const { title } = await req.json();
+    const { postId } = await params;
+    const values = await req.json();
 
     if (!userId) {
       return new NextResponse("Unauthorized", {
@@ -13,16 +17,19 @@ export async function POST(req: Request) {
       });
     }
 
-    const post = await db.post.create({
-      data: {
+    const post = await db.post.update({
+      where: {
+        id: postId,
         userId,
-        title,
+      },
+      data: {
+        ...values,
       },
     });
 
     return NextResponse.json(post);
   } catch (error) {
-    console.log("[POSTS]::POST", error);
+    console.log("[POSTS/{POSTID}]::PATCH", error);
     return new NextResponse("Internal Error", {
       status: 500,
     });
