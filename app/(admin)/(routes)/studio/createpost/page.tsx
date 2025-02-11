@@ -38,7 +38,7 @@ const CreatePostPage = () => {
   const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    // console.log(values);
 
     try {
       const response = await axios.post("/api/posts", values);
