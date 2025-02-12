@@ -4,6 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 import { LayoutDashboard } from "lucide-react";
 import { redirect } from "next/navigation";
 import TitleForm from "./_components/title-form";
+import DescriptionForm from "./_components/description-form";
 
 const PostsEditorPage = async (
   {params}: {params: {postId: string}}
@@ -39,8 +40,6 @@ const PostsEditorPage = async (
   const filledFields = requiredFields.filter((field) => field).length;
   const completedFields = `(${filledFields}/${totalFields})`;
 
-
-
   return (
     <div className="p-6">
       <div className="flex items-center justify-between">
@@ -63,8 +62,11 @@ const PostsEditorPage = async (
             initialData={Post}
             postId={Post.id}
           />
+          <DescriptionForm 
+            initialData={Post}
+            postId={Post.id}
+          />
         </div>
-
       </div>
     </div>
   );
