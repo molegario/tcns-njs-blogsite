@@ -35,6 +35,14 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+## Installing ShadCN (legacy-peer-deps)
+
+Because of incompatibilities with NextJS r15 (React 19) shadCN must be installed using the legacy-peer-deps flag.
+```bash
+npx --legacy-peer-deps shadcn@latest init -d
+npx --legacy-peer-deps shadcn@latest add {shadCN component}
+```
+
 ## Database Initialization/Updates
 
 This project uses a Prisma model layer and connects to a mongodb hosted on an Atlas free account.  The connection string is set in the .env file in the project root.  Note that the schema was adapted from a schema originally coded for mySQL with a Prisma layer for a MongoDB collection.

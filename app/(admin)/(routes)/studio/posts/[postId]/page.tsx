@@ -5,6 +5,7 @@ import { LayoutDashboard } from "lucide-react";
 import { redirect } from "next/navigation";
 import TitleForm from "./_components/title-form";
 import DescriptionForm from "./_components/description-form";
+import CategoryForm from "./_components/category-form";
 
 type tParams = Promise<{ postId: string; }>;
 
@@ -27,6 +28,12 @@ const PostsEditorPage = async (
   if(!Post) {
     return redirect("/studio");
   }
+
+  const categories = await db.category.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
 
   if (userId !== Post?.userId) {
     return redirect("/studio");
@@ -56,17 +63,19 @@ const PostsEditorPage = async (
         <div>
           <div className="flex items-center gap-x-2">
             <IconBadge icon={LayoutDashboard} />
-            <h2 className="text-xl">
-              Post details
-            </h2>
+            <h2 className="text-xl">Post details</h2>
           </div>
-          <TitleForm 
+          <TitleForm initialData={Post} postId={Post.id} />
+          <DescriptionForm initialData={Post} postId={Post.id} />
+          <CategoryForm
             initialData={Post}
             postId={Post.id}
-          />
-          <DescriptionForm 
-            initialData={Post}
-            postId={Post.id}
+            options={categories.map(
+              ({ name, id }) => ({
+                label: name,
+                value: id,
+              })
+            )}
           />
         </div>
       </div>
