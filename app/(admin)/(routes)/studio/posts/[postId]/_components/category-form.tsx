@@ -17,14 +17,15 @@ import toast from "react-hot-toast";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Post } from "@prisma/client";
 import { Combobox } from "@/components/ui/combobox";
 
 /**
  * Props for the CategoryForm component.
  */
 interface CategoryFormProps {
-  initialData: Post;
+  initialData: {
+    categoryId: string | null;
+  };
   postId: string;
   options: { label: string; value: string }[];
 }
@@ -59,7 +60,7 @@ const CategoryForm = ({ initialData, postId, options }: CategoryFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      categoryId: initialData?.categoryId ?? "",
+      categoryId: initialData?.categoryId ?? undefined,
     },
   });
 
