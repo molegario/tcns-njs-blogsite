@@ -59,3 +59,7 @@ npx prisma generate
 npx prisma db push
 ```
 
+NOTE: To locally review the DB state invoke the prisma studio from the prompt
+```bash
+npx prisma studio
+```
