@@ -6,8 +6,10 @@ import { redirect } from "next/navigation";
 import TitleForm from "./_components/title-form";
 import DescriptionForm from "./_components/description-form";
 
+type tParams = Promise<{ postId: string; }>;
+
 const PostsEditorPage = async (
-  {params}: {params: {postId: string}}
+  { params }: { params: tParams }
 ) => {
   const { postId } = await params;
   const { userId } = await auth();

@@ -2,9 +2,11 @@ import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
+type tParams = Promise<{ postId: string }>;
+
 export async function PATCH(
   req: Request,
-  { params }: { params: { postId: string } }
+  { params }: { params: tParams }
 ) {
   try {
     const { userId } = await auth();
