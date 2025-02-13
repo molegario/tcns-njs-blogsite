@@ -37,10 +37,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Installing ShadCN (legacy-peer-deps)
 
-Because of incompatibilities with NextJS r15 (React 19) shadCN must be installed using the legacy-peer-deps flag.
+Because of incompatibilities with NextJS r15 (React 19) shadCN must be installed using the legacy-peer-deps flag (set in .npmrc in the app root).
 ```bash
-npx --legacy-peer-deps shadcn@latest init -d
-npx --legacy-peer-deps shadcn@latest add {shadCN component}
+npx shadcn@latest init -d
+npx shadcn@latest add {shadCN component}
 ```
 
 ## Database Initialization/Updates
@@ -66,4 +66,5 @@ npx prisma studio
 
 ## Uploadthing configuration
 
-This site uses Uploadthing for image storage.  
+- This site uses Uploadthing for image storage.
+- also requires legacy-peer-dep flag (set in .npmrc file in the project root)
