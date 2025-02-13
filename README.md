@@ -63,3 +63,7 @@ NOTE: To locally review the DB state invoke the prisma studio from the prompt
 ```bash
 npx prisma studio
 ```
+
+## Uploadthing configuration
+
+This site uses Uploadthing for image storage.  

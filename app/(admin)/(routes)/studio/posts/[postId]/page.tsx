@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import TitleForm from "./_components/title-form";
 import DescriptionForm from "./_components/description-form";
 import CategoryForm from "./_components/category-form";
+import ImageForm from "./_components/image-form";
 
 type tParams = Promise<{ postId: string; }>;
 
@@ -77,6 +78,7 @@ const PostsEditorPage = async (
               })
             )}
           />
+          <ImageForm initialData={Post} postId={Post.id} />
         </div>
       </div>
     </div>
