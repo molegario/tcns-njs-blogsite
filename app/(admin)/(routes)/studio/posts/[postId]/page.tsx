@@ -1,12 +1,15 @@
 import { IconBadge } from "@/components/icon-badge";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
-import { LayoutDashboard } from "lucide-react";
+import { LayoutDashboard, ListChecks, SquareCheckBig } from "lucide-react";
 import { redirect } from "next/navigation";
 import TitleForm from "./_components/title-form";
 import DescriptionForm from "./_components/description-form";
 import CategoryForm from "./_components/category-form";
 import ImageForm from "./_components/image-form";
+import IsFeaturedForm from "./_components/isfeatured-form";
+import SectionsForm from "./_components/section-form";
+import PostAction from "./_components/post-action";
 
 type tParams = Promise<{ postId: string; }>;
 
@@ -23,6 +26,14 @@ const PostsEditorPage = async (
   const Post = await db.post.findUnique({
     where: {
       id: postId,
+      userId,
+    },
+    include: {
+      sections: {
+        orderBy: {
+          position: "asc",
+        },
+      },
     },
   });
 
@@ -45,10 +56,12 @@ const PostsEditorPage = async (
     Post.description,
     Post.imageUrl,
     Post.categoryId,
+    Post.sections.some(section=>section.isPublished),
   ];
   const totalFields = requiredFields.length;
   const filledFields = requiredFields.filter((field) => field).length;
   const completedFields = `(${filledFields}/${totalFields})`;
+  const isComplete = requiredFields.every((field) => field);
 
   return (
     <div className="p-6">
@@ -59,6 +72,11 @@ const PostsEditorPage = async (
             Complete all fields {completedFields}
           </span>
         </div>
+        <PostAction 
+          disabled={!isComplete}
+          postId={postId}
+          isPublished={Post.isPublished}
+        />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
         <div>
@@ -67,18 +85,33 @@ const PostsEditorPage = async (
             <h2 className="text-xl">Post details</h2>
           </div>
           <TitleForm initialData={Post} postId={Post.id} />
-          <DescriptionForm initialData={Post} postId={Post.id} />
           <CategoryForm
             initialData={Post}
             postId={Post.id}
-            options={categories.map(
-              ({ name, id }) => ({
-                label: name,
-                value: id,
-              })
-            )}
+            options={categories.map(({ name, id }) => ({
+              label: name,
+              value: id,
+            }))}
           />
+          <DescriptionForm initialData={Post} postId={Post.id} />
           <ImageForm initialData={Post} postId={Post.id} />
+        </div>
+        <div className="space-y-6">
+          <div>
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={ListChecks} />
+              <h2 className="text-xl">Post sections</h2>
+            </div>
+            <SectionsForm initialData={Post} postId={Post.id} />
+          </div>
+
+          <div>
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={SquareCheckBig} />
+              <h2 className="text-xl">Post statuses</h2>
+            </div>
+            <IsFeaturedForm initialData={Post} postId={Post.id} />
+          </div>
         </div>
       </div>
     </div>
