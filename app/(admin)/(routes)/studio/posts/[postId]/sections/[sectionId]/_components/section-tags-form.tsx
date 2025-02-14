@@ -21,9 +21,10 @@ import { Badge } from "@/components/ui/badge";
 
 interface TagsFormProps {
   postId: string;
+  sectionId: string;
   initialData: {
     tags: string | null;
-  };
+  } | null;
 }
 
 const formSchema = z.object({
@@ -32,7 +33,7 @@ const formSchema = z.object({
   }),
 });
 
-const TagsForm = ({ initialData, postId }: TagsFormProps) => {
+const SectionTagsForm = ({ initialData, postId, sectionId }: TagsFormProps) => {
   const router = useRouter();
 
   const [isEditing, setIsEditing] = useState(false);
@@ -50,19 +51,19 @@ const TagsForm = ({ initialData, postId }: TagsFormProps) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.patch(`/api/posts/${postId}`, values);
-      toast.success("Post tags updated successfully");
+      await axios.patch(`/api/posts/${postId}/sections/${sectionId}`, values);
+      toast.success("Section tags updated successfully");
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error("Failed to update post tags");
+      toast.error("Failed to update section tags");
     }
   };
 
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Post tags
+        Section tags
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
@@ -129,4 +130,4 @@ const TagsForm = ({ initialData, postId }: TagsFormProps) => {
   );
 };
 
-export default TagsForm;
+export default SectionTagsForm;

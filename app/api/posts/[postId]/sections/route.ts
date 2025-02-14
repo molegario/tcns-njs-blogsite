@@ -50,7 +50,6 @@ export async function POST(
     return NextResponse.json(section);
   } catch {
     console.error(
-      "POSTS/[POSTID]/SECTIONS::POST::ERROR::",
       "POSTS/[POSTID]/SECTIONS API DB ACTION FAIL"
     );
 

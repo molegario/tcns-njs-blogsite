@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-// import Link from "next/link";
 import toast from "react-hot-toast";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
@@ -25,6 +24,7 @@ interface TitleFormProps {
     title?: string;
   } | null;
   postId: string;
+  sectionId: string;
 }
 
 const formSchema = z.object({
@@ -33,7 +33,7 @@ const formSchema = z.object({
   }),
 });
 
-const SectionTitleForm = ({ initialData, postId }: TitleFormProps) => {
+const SectionTitleForm = ({ initialData, postId, sectionId }: TitleFormProps) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
 
@@ -50,7 +50,7 @@ const SectionTitleForm = ({ initialData, postId }: TitleFormProps) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.patch(`/api/posts/${postId}`, values);
+      await axios.patch(`/api/posts/${postId}/sections/${sectionId}`, values);
       toast.success("Post was updated successfully.");
       toggleEdit();
       router.refresh(); //refresh view
