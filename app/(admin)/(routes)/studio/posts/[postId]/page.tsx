@@ -11,16 +11,30 @@ import IsFeaturedForm from "./_components/isfeatured-form";
 import SectionsForm from "./_components/section-form";
 import PostAction from "./_components/post-action";
 import TagsForm from "./_components/tags-form";
+import { checkRole } from "@/lib/roles";
 
 type tParams = Promise<{ postId: string; }>;
 
 const PostsEditorPage = async (
   { params }: { params: tParams }
 ) => {
-  const { postId } = await params;
-  const { userId } = await auth();
+  const isAdmin = await checkRole("admin");
 
+  //must be admin to edit posts
+  if (!isAdmin) {
+    redirect("/");
+  }
+
+  const { userId } = await auth();
+  const { postId } = await params;
+
+  //must be logged in and identified to edit posts
   if (!userId) {
+    return redirect("/");
+  }
+
+  //must have a postid to edit
+  if (!postId) {
     return redirect("/studio");
   }
 
@@ -38,6 +52,7 @@ const PostsEditorPage = async (
     },
   });
 
+  //must be the owner of the post to edit
   if(!Post) {
     return redirect("/studio");
   }
@@ -47,10 +62,6 @@ const PostsEditorPage = async (
       name: "asc",
     },
   });
-
-  if (userId !== Post?.userId) {
-    return redirect("/studio");
-  }
 
   const requiredFields = [
     Post.title,

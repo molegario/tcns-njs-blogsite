@@ -9,40 +9,40 @@ import {
   Form,
   FormControl,
   FormField,
-  FormMessage,
   FormItem,
+  FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+// import Link from "next/link";
 import toast from "react-hot-toast";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
 
-interface DescriptionFormProps {
-  postId: string;
+interface TitleFormProps {
   initialData: {
-    description: string | null;
-  };
+    title?: string;
+  } | null;
+  postId: string;
 }
 
 const formSchema = z.object({
-  description: z.string().min(3, {
-    message: "Description must be at least 3 characters long",
+  title: z.string().min(1, {
+    message: "A title of more than 1 character is required.",
   }),
 });
 
-const DescriptionForm = ({ initialData, postId }: DescriptionFormProps) => {
+const SectionTitleForm = ({ initialData, postId }: TitleFormProps) => {
   const router = useRouter();
-
   const [isEditing, setIsEditing] = useState(false);
 
-  const toggleEdit = () => setIsEditing((current) => !current);
+  const toggleEdit = () => setIsEditing((edit) => !edit);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      description: initialData?.description ?? undefined,
+      title: initialData?.title ?? undefined,
     },
   });
 
@@ -51,25 +51,25 @@ const DescriptionForm = ({ initialData, postId }: DescriptionFormProps) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/posts/${postId}`, values);
-      toast.success("Description updated successfully");
+      toast.success("Post was updated successfully.");
       toggleEdit();
-      router.refresh();
+      router.refresh(); //refresh view
     } catch {
-      toast.error("Failed to update description");
+      toast.error("failed to update title form");
     }
   };
 
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Post description
+        Post title
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
-              <Pencil size={16} />
-              Edit description
+              <Pencil className="h-4 w-4 mr-2" />
+              Edit title
             </>
           )}
         </Button>
@@ -78,10 +78,10 @@ const DescriptionForm = ({ initialData, postId }: DescriptionFormProps) => {
         <p
           className={cn(
             "text-sm mt-2",
-            !initialData?.description && "text-slate-500 italic"
+            !initialData?.title && "text-slate-500 italic"
           )}
         >
-          {initialData?.description || "No description provided"}
+          {initialData?.title || "No section title provided"}
         </p>
       ) : (
         <Form {...form}>
@@ -91,13 +91,13 @@ const DescriptionForm = ({ initialData, postId }: DescriptionFormProps) => {
           >
             <FormField
               control={form.control}
-              name="description"
+              name="title"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Textarea
+                    <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'A review of the best poutine places in Canada'"
+                      placeholder="e.g. `Looking for a guy with a truck ...`"
                       {...field}
                     />
                   </FormControl>
@@ -117,4 +117,5 @@ const DescriptionForm = ({ initialData, postId }: DescriptionFormProps) => {
   );
 };
 
-export default DescriptionForm;
+export default SectionTitleForm;
+// OLEGARIO PROGRESS TIMESTAMP REF:: https://youtu.be/Big_aFLmekI?t=9292

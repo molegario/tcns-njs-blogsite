@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "The Common Nonsense - Featured Posts",
+  description: "The Common Nonsense blog is an online magazine that covers a wide range of topics, from politics to pop culture.",
+  keywords: "featured, posts, blog, politics, pop culture",
+};
+
 const FeaturedPosts = async function () {
   return (
     <>

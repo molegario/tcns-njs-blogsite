@@ -63,7 +63,7 @@ const SectionsForm = ({ initialData, postId }: SectionsFormProps) => {
   };
 
   const onEdit = async (id: string) => {
-    router.push(`/dashboard/myposts/${postId}/sections/${id}`);
+    router.push(`/studio/posts/${postId}/sections/${id}`);
   };
 
   const onReorder = async (updateData: { id: string; position: number }[]) => {
