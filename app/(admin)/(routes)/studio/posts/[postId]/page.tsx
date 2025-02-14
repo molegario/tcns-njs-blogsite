@@ -10,6 +10,7 @@ import ImageForm from "./_components/image-form";
 import IsFeaturedForm from "./_components/isfeatured-form";
 import SectionsForm from "./_components/section-form";
 import PostAction from "./_components/post-action";
+import TagsForm from "./_components/tags-form";
 
 type tParams = Promise<{ postId: string; }>;
 
@@ -72,7 +73,7 @@ const PostsEditorPage = async (
             Complete all fields {completedFields}
           </span>
         </div>
-        <PostAction 
+        <PostAction
           disabled={!isComplete}
           postId={postId}
           isPublished={Post.isPublished}
@@ -108,8 +109,9 @@ const PostsEditorPage = async (
           <div>
             <div className="flex items-center gap-x-2">
               <IconBadge icon={SquareCheckBig} />
-              <h2 className="text-xl">Post statuses</h2>
+              <h2 className="text-xl">Post visibility</h2>
             </div>
+            <TagsForm initialData={Post} postId={Post.id} />
             <IsFeaturedForm initialData={Post} postId={Post.id} />
           </div>
         </div>

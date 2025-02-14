@@ -75,49 +75,43 @@ const DescriptionForm = ({ initialData, postId }: DescriptionFormProps) => {
         </Button>
       </div>
       {!isEditing ? (
-        <>
-          <p
-            className={cn(
-              "text-sm mt-2",
-              !initialData.description && "text-slate-500 italic"
-            )}
-          >
-            {initialData.description || "No description provided"}
-          </p>
-        </>
+        <p
+          className={cn(
+            "text-sm mt-2",
+            !initialData.description && "text-slate-500 italic"
+          )}
+        >
+          {initialData.description || "No description provided"}
+        </p>
       ) : (
-        <>
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-4 mt-4"
-            >
-              <FormField 
-                control={form.control}
-                name="description"
-                render={
-                  ({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Textarea
-                          disabled={isSubmitting}
-                          placeholder="e.g. 'A review of the best poutine places in Canada'"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )
-                }
-              />
-              <div className="flex items-center gap-x-2">
-                <Button disabled={!isValid || isSubmitting} type="submit">
-                  Save
-                </Button>
-              </div>
-            </form>
-          </Form>
-        </>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-4 mt-4"
+          >
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Textarea
+                      disabled={isSubmitting}
+                      placeholder="e.g. 'A review of the best poutine places in Canada'"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="flex items-center gap-x-2">
+              <Button disabled={!isValid || isSubmitting} type="submit">
+                Save
+              </Button>
+            </div>
+          </form>
+        </Form>
       )}
     </div>
   );
