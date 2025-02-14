@@ -12,7 +12,6 @@ const Preview = ({ value }: PreviewProps) => {
   return (
     <>
       <ReactMarkdown
-        // children={value}
         components={{
           p({ children }) {
             return <p className="mb-4 ml-2 text-stone-900">{children}</p>;

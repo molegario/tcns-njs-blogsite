@@ -2,9 +2,6 @@
 
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
-// import MDEditor from "@uiw/react-md-editor";
-
-// import "react-quill/dist/quill.snow.css";
 
 interface EditorProps {
   value: string;
