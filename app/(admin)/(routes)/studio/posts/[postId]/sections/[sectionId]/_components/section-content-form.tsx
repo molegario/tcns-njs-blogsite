@@ -79,7 +79,7 @@ const SectionContentForm = ({
           )}
         >
           {!initialData?.description ? (
-            "No description provided."
+            "No content has been set."
           ) : (
             <Preview value={initialData?.description} />
           )}

@@ -20,7 +20,7 @@ const Editor = ({ value, onChange }: EditorProps) => {
 
   return (
     <div className="bg-white">
-      <MDEditor value={value} onChange={onEditorChange} />
+      <MDEditor value={value} onChange={onEditorChange} preview="edit" />
     </div>
   );
 };

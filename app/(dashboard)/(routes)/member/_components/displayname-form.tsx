@@ -17,21 +17,23 @@ import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
-interface TitleFormProps {
-  postId: string;
+interface DisplayNameFormProps {
+  userId: string;
+  memberId: string | null;
   initialData: {
-    title: string;
-  };
+    displayname: string | null;
+  } | null;
 }
 
 const formSchema = z.object({
-  title: z.string().min(3, {
-    message: "Title must be at least 3 characters long",
+  displayname: z.string().min(3, {
+    message: "Displayname must be at least 3 characters long",
   }),
 });
 
-const TitleForm = ({ postId, initialData }: TitleFormProps) => {
+const DisplayNameForm = ({ userId, memberId, initialData }: DisplayNameFormProps) => {
   const router = useRouter();
 
   const [isEditing, setIsEditing] = useState(false);
@@ -39,41 +41,63 @@ const TitleForm = ({ postId, initialData }: TitleFormProps) => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData,
+    defaultValues: {
+      displayname: initialData?.displayname ?? "",
+    },
   });
 
   const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.patch(`/api/posts/${postId}`, values);
-      toast.success("Title updated successfully");
+      if (!memberId) {
+        // create new member entry
+        await axios.post(`/api/members`, {
+          ...values,
+          userId: userId,
+        });
+        toast.success("New member entry created successfully");
+      } else {
+        // update existing member entry
+        await axios.patch(`/api/members/${memberId}`, values);
+        toast.success("Member displayname updated successfully");
+      }
+      
       toggleEdit();
       router.refresh();
     } catch {
-      toast.error("Failed to update title");
+      if(!memberId) {
+        toast.error("Failed to create new member entry");
+      } else {
+        toast.error("Failed to update displayname");
+      }
     }
   };
 
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Post title
+        Your Displayname
         <Button variant="ghost" onClick={toggleEdit}>
           {isEditing ? (
             <>Cancel</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit title
+              Edit displayname
             </>
           )}
         </Button>
       </div>
       {!isEditing ? (
-        <>
-          <p>{initialData.title}</p>
-        </>
+        <p
+          className={cn(
+            "text-sm mt-2",
+            !initialData?.displayname && "text-slate-500 italic"
+          )}
+        >
+          {initialData?.displayname || "No displayname provided"}
+        </p>
       ) : (
         <>
           <Form {...form}>
@@ -83,13 +107,13 @@ const TitleForm = ({ postId, initialData }: TitleFormProps) => {
             >
               <FormField
                 control={form.control}
-                name="title"
+                name="displayname"
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
                       <Input
                         disabled={isSubmitting}
-                        placeholder="e.g 'Review of Canada's Best Poutine Places in 2025'"
+                        placeholder="e.g 'Weathers', 'Mikerowaveable', 'The Big Lebouski'"
                         {...field}
                       />
                     </FormControl>
@@ -110,4 +134,4 @@ const TitleForm = ({ postId, initialData }: TitleFormProps) => {
   );
 };
 
-export default TitleForm;
+export default DisplayNameForm;
