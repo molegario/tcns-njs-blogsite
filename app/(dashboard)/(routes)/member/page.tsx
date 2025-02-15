@@ -5,6 +5,7 @@ import { ListChecks } from "lucide-react";
 import { redirect } from "next/navigation";
 import DisplayNameForm from "./_components/displayname-form";
 import FullNameForm from "./_components/fullname-form";
+import EmailForm from "./_components/email-form";
 
 
 const memberPage = async () => {
@@ -42,6 +43,11 @@ const memberPage = async () => {
                   initialData={Member}
                 />
                 <DisplayNameForm
+                  userId={userId}
+                  memberId={Member?.id ?? null}
+                  initialData={Member}
+                />
+                <EmailForm
                   userId={userId}
                   memberId={Member?.id ?? null}
                   initialData={Member}
