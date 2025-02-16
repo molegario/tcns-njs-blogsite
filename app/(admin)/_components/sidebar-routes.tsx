@@ -1,6 +1,6 @@
 "use client";
 
-import { FileStack, PencilRuler, PersonStanding, Star } from "lucide-react";
+import { LayoutGrid, PencilRuler, PersonStanding, Star } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 
 const adminRoutes = [
@@ -13,19 +13,19 @@ const adminRoutes = [
 
 const guestRoutes = [
   {
-    icon: PersonStanding,
-    label: "Member Settings",
-    href: "/member",
-  },
-  {
-    icon: FileStack,
-    label: "All Posts",
-    href: "/allposts",
-  },
-  {
     icon: Star,
     label: "Featured Posts",
     href: "/",
+  },
+  {
+    icon: LayoutGrid,
+    label: "Dashboard",
+    href: "/allposts",
+  },
+  {
+    icon: PersonStanding,
+    label: "Member Settings",
+    href: "/member",
   },
 ];
 
