@@ -1,14 +1,35 @@
 import { IconBadge } from "@/components/icon-badge";
+import { db } from "@/lib/db";
 import { checkRole } from "@/lib/roles";
+import { auth } from "@clerk/nextjs/server";
 import { BookHeart, ListChecks } from "lucide-react";
 import { redirect } from "next/navigation";
+import { DataTable } from "../../_components/data-table";
+import { columns, columnsRedux } from "../../_components/columns";
 
 const StudioPage = async function () {
+  const { userId } = await auth();
   const isAdmin = await checkRole("admin");
 
   if (!isAdmin) {
     redirect("/");
   }
+
+  if(!userId) {
+    return redirect("/");
+  }
+
+  const Posts = await db.post.findMany({
+    where: {
+      userId: userId,
+    },
+    include: {
+      category: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 
   return (
     <>
@@ -31,6 +52,12 @@ const StudioPage = async function () {
                 <div className="flex items-center gap-x-2">
                   <IconBadge icon={BookHeart} />
                   <h3 className="text-xl">Content Management</h3>
+                </div>
+                <div className="hidden md:block">
+                  <DataTable columns={columns} data={Posts} />
+                </div>
+                <div className="block md:hidden">
+                  <DataTable columns={columnsRedux} data={Posts} />
                 </div>
               </div>
             </div>
