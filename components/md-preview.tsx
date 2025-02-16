@@ -14,7 +14,13 @@ const Preview = ({ value }: PreviewProps) => {
       <ReactMarkdown
         components={{
           p({ children }) {
-            return <p className="mb-4 ml-2 text-stone-900">{children}</p>;
+            return <p className="text-lg mb-2 ml-2 text-stone-900">{children}</p>;
+          },
+          h1({ children }) {
+            return <h1 className="text-2xl font-medium mb-2 ml-2">{children}</h1>;
+          },
+          h2({ children }) {
+            return <h2 className="text-xl font-medium mb-2 ml-2">{children}</h2>;
           },
           code(props) {
             const { children, className, ...rest } = props;

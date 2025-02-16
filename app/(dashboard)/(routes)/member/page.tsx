@@ -1,15 +1,21 @@
 import { IconBadge } from "@/components/icon-badge";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
-import { ListChecks } from "lucide-react";
+import { BookHeart, ListChecks } from "lucide-react";
 import { redirect } from "next/navigation";
 import DisplayNameForm from "./_components/displayname-form";
 import FullNameForm from "./_components/fullname-form";
 import EmailForm from "./_components/email-form";
+import ProfileForm from "./_components/profile-form";
+import ProfileImageForm from "./_components/profile-image-form";
+import { checkRole } from "@/lib/roles";
+import AcknowledgeAdminForm from "./_components/acknowledge-admin-form";
 
 
 const memberPage = async () => {
   const { userId } = await auth();
+
+  const isAdmin = await checkRole("admin");
 
   if (!userId) {
     return redirect("/");
@@ -37,6 +43,11 @@ const memberPage = async () => {
                   <IconBadge icon={ListChecks} />
                   <h3 className="text-xl">Member Details</h3>
                 </div>
+                {
+                  isAdmin && (
+                    <AcknowledgeAdminForm userId={userId} memberId={Member?.id ?? null} initialData={Member} />
+                  )
+                }
                 <FullNameForm
                   userId={userId}
                   memberId={Member?.id ?? null}
@@ -48,6 +59,22 @@ const memberPage = async () => {
                   initialData={Member}
                 />
                 <EmailForm
+                  userId={userId}
+                  memberId={Member?.id ?? null}
+                  initialData={Member}
+                />
+              </div>
+              <div className="md:col-span-4">
+                <div className="flex items-center gap-x-2">
+                  <IconBadge icon={BookHeart} />
+                  <h3 className="text-xl">Profile Content</h3>
+                </div>
+                <ProfileForm
+                  userId={userId}
+                  memberId={Member?.id ?? null}
+                  initialData={Member}
+                />
+                <ProfileImageForm
                   userId={userId}
                   memberId={Member?.id ?? null}
                   initialData={Member}

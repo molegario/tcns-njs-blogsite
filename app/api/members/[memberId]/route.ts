@@ -1,4 +1,5 @@
 import { db } from "@/lib/db";
+import { checkRole } from "@/lib/roles";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
@@ -10,6 +11,7 @@ export async function PATCH(
 ) {
   try {
     const { userId } = await auth();
+    const isAdmin = await checkRole("admin");
     const { memberId } = await params;
     const {
       userId: _userId,
@@ -28,6 +30,7 @@ export async function PATCH(
       },
       data: {
         ...values,
+        Privileges: isAdmin ? ["admin"] : [],
       },
     });
 
