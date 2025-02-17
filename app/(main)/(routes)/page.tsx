@@ -1,5 +1,11 @@
 import { IconBadge } from "@/components/icon-badge";
-import { ListChecks } from "lucide-react";
+import { 
+  Activity,
+  AlarmClock,
+  Eye,
+  MessageSquare,
+  Megaphone, 
+} from "lucide-react";
 import type { Metadata } from "next";
 import HeroCarousel from "../_components/hero-carousel";
 import ListCarousel from "../_components/list-carousel";
@@ -24,15 +30,16 @@ const FeaturedPosts = async function () {
                 <h1 className="text-zinc-200 uppercase text-lg md:text-3xl font-bold md:font-black py-2 md:pt-4 md:pb-2 text-center">
                   Wading through the{" "}
                   <span className="text-[#EF5B2A] uppercase">nonsense</span> of
-                  the day. Reporting to <span className="text-[#EF5B2A] uppercase">common</span> sense
+                  the day. Reporting to{" "}
+                  <span className="text-[#EF5B2A] uppercase">common</span> sense
                   people.
                 </h1>
               </div>
             </div>
-            <div className="grid grid-col-1 md:grid-cols-9 gap-6 mt-8 mb-2">
-              <div className="md:col-span-6 mb-2">
+            <div className="grid grid-col-1 md:grid-cols-12 gap-6 mt-8 mb-2">
+              <div className="md:col-span-9 mb-2">
                 <div className="flex items-center gap-x-2 mb-2">
-                  <IconBadge icon={ListChecks} size={"sm"} />
+                  <IconBadge icon={Megaphone} size={"sm"} />
                   <h3 className="text-lg uppercase">Currently featured</h3>
                 </div>
                 <hr className="border-t-2 border-gray-300 mb-6" />
@@ -42,7 +49,7 @@ const FeaturedPosts = async function () {
                 <div className="grid grid-col-1 md:grid-cols-6 gap-6 mt-8 mb-4">
                   <div className="md:col-span-2 mb-2">
                     <div className="flex items-center gap-x-2 mb-2">
-                      <IconBadge icon={ListChecks} size={"sm"} />
+                      <IconBadge icon={AlarmClock} size={"sm"} />
                       <h3 className="text-lg uppercase">Latest article</h3>
                     </div>
                     <hr className="border-t-2 border-gray-300 mb-6" />
@@ -54,7 +61,7 @@ const FeaturedPosts = async function () {
                   </div>
                   <div className="md:col-span-2 mb-2">
                     <div className="flex items-center gap-x-2 mb-2">
-                      <IconBadge icon={ListChecks} size={"sm"} />
+                      <IconBadge icon={Eye} size={"sm"} />
                       <h3 className="text-lg uppercase">Most viewed</h3>
                     </div>
                     <hr className="border-t-2 border-gray-300 mb-6" />
@@ -66,7 +73,7 @@ const FeaturedPosts = async function () {
                   </div>
                   <div className="md:col-span-2 mb-2">
                     <div className="flex items-center gap-x-2 mb-2">
-                      <IconBadge icon={ListChecks} size={"sm"} />
+                      <IconBadge icon={MessageSquare} size={"sm"} />
                       <h3 className="text-lg uppercase">Most commented</h3>
                     </div>
                     <hr className="border-t-2 border-gray-300 mb-6" />
@@ -104,7 +111,7 @@ const FeaturedPosts = async function () {
               </div>
               <div className="md:col-span-3 mb-8">
                 <div className="flex items-center gap-x-2 mb-2">
-                  <IconBadge icon={ListChecks} size={"sm"} />
+                  <IconBadge icon={Activity} size={"sm"} />
                   <h3 className="text-lg uppercase">Content feed</h3>
                 </div>
                 <hr className="border-t-2 border-gray-300 mb-6" />

@@ -18,7 +18,7 @@ export const NavbarRoutes = ({
       <SignedIn>
         {isAdmin && (
           <Link href="/studio/createpost">
-            <Button>Create Post</Button>
+            <Button size={'sm'}>Create Post</Button>
           </Link>
         )}
         <UserButton />

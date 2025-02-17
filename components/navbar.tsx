@@ -15,12 +15,12 @@ const NavbarMain = async function () {
       <div className="flex gap-x-2 ml-auto">
         <SignedIn>
           <Link href="/allposts">
-            <Button>Dashboard</Button>
+            <Button size={'sm'}>Dashboard</Button>
           </Link>
 
           {isAdmin && (
             <Link href="/studio">
-              <Button>Studio</Button>
+              <Button size={'sm'}>Studio</Button>
             </Link>
           )}
 
