@@ -6,6 +6,7 @@ import { BookHeart, ListChecks } from "lucide-react";
 import { redirect } from "next/navigation";
 import { DataTable } from "../../_components/data-table";
 import { columns, columnsRedux } from "../../_components/columns";
+import ContentStats from "../../_components/content-stats";
 
 const StudioPage = async function () {
   const { userId } = await auth();
@@ -25,6 +26,7 @@ const StudioPage = async function () {
     },
     include: {
       category: true,
+      comments: true,
     },
     orderBy: {
       createdAt: "desc",
@@ -47,6 +49,7 @@ const StudioPage = async function () {
                   <IconBadge icon={ListChecks} />
                   <h3 className="text-xl">Content Statistics</h3>
                 </div>
+                <ContentStats Posts={Posts} />
               </div>
               <div className="md:col-span-4">
                 <div className="flex items-center gap-x-2">
