@@ -4,13 +4,11 @@ import Footer from "@/components/footer";
 
 const PageLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="h-full flex flex-col mt-[75px]">
-      <NavbarMain />
-      <div className="flex flex-1">
-        <main className="pt-0 h-full pl-0 flex flex-col justify-center items-center">
-          {children}
-        </main>
+    <div className="h-full">
+      <div className="h-[80px] fixed inset-y-0 w-full z-50">
+        <NavbarMain />
       </div>
+      <main className="pt-[80px]">{children}</main>
       <Footer />
     </div>
   );

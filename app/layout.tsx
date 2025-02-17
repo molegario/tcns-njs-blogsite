@@ -1,17 +1,33 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+// import { Geist, Geist_Mono, Josefin_Sans, Josefin_Slab } from "next/font/google";
+import {
+  // Geist,
+  // Geist_Mono,
+  Josefin_Sans,
+  Josefin_Slab,
+} from "next/font/google";
 import { ClerkProvider } from '@clerk/nextjs';
 import { ToasterProvider } from "@/components/providers/toaster-provider";
 import { ConfettiProvider } from "@/components/providers/confetti-provider";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
+
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
+
+const josefinSans = Josefin_Sans({
+  variable: "--font-josefin-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const josefinSlab = Josefin_Slab({
+  variable: "--font-josefin-slab",
   subsets: ["latin"],
 });
 
@@ -29,7 +45,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${josefinSans.variable} ${josefinSlab.variable} antialiased`}
         >
           <ConfettiProvider />
           <ToasterProvider />
