@@ -2,15 +2,15 @@ import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-type tParams = Promise<{ postId: string; sectionId: string }>;
+type tParams = Promise<{  postId: string }>;
 
 export async function PATCH(
   req: Request,
-  { params }: { params: tParams }
+  { params }: { params: tParams; }
 ) {
   try {
     const { userId } = await auth();
-    const { postId, sectionId } = await params;
+    const { postId } = await params;
 
     if (!userId) {
       return new NextResponse("Unauthorized access", { status: 401 });
@@ -21,43 +21,39 @@ export async function PATCH(
         id: postId,
         userId: userId,
       },
+      include: {
+        sections: true,
+      },
     });
 
     if (!ownPost) {
       return new NextResponse("Unauthorized access", { status: 401 });
     }
 
-    const Section = await db.section.findUnique({
-      where: {
-        id: sectionId,
-        postId: postId,
-      },
-    });
-
     if (
-      !Section ||
-      !Section.title ||
-      !Section.description ||
-      !Section.imageUrl
+      !(ownPost?.sections.some(
+        (xx) => xx.imageUrl && xx.title && xx.description
+      )) ||
+      !ownPost.title ||
+      !ownPost.description ||
+      !ownPost.imageUrl ||
+      !ownPost.categoryId
     ) {
       return new NextResponse("Missing required fields", { status: 404 });
     }
 
-    const sectionpatch = await db.section.update({
+    const postpatch = await db.post.update({
       where: {
-        id: sectionId,
-        postId: postId,
+        id: postId,
       },
       data: {
         isPublished: true,
       },
     });
 
-    return NextResponse.json(sectionpatch);
+    return NextResponse.json(postpatch);
   } catch {
-    console.error(
-      "POSTS/[POSTID]/SECTIONS/[SECTIONID]/PUBLISH::PATCH API DB ACTION FAIL"
-    );
+    console.error("POSTS/[POSTID]/PUBLISH::PATCH API DB ACTION FAIL");
     return new NextResponse("Internal server error", {
       status: 500,
     });

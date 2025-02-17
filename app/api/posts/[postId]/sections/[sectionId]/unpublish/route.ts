@@ -58,7 +58,7 @@ export async function PATCH(
     return NextResponse.json(sectionpatch);
   } catch {
     console.error(
-      "POSTS/[POSTID]/SECTIONS/[SECTIONID]/UNPUBLISH API DB ACTION FAIL"
+      "POSTS/[POSTID]/SECTIONS/[SECTIONID]/UNPUBLISH::PATCH API DB ACTION FAIL"
     );
     return new NextResponse("Internal server error", {
       status: 500,

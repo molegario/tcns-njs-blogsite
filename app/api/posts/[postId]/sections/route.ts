@@ -50,7 +50,7 @@ export async function POST(
     return NextResponse.json(section);
   } catch {
     console.error(
-      "POSTS/[POSTID]/SECTIONS API DB ACTION FAIL"
+      "POSTS/[POSTID]/SECTIONS::POST API DB ACTION FAIL"
     );
 
     return new NextResponse("Internal server error", {

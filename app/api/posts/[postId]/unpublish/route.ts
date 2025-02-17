@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 type tParams = Promise<{ postId: string }>;
 
-export async function PUT(
+export async function PATCH(
   req: Request,
   { params }: { params: tParams }
 ) {
@@ -16,40 +16,31 @@ export async function PUT(
       return new NextResponse("Unauthorized access", { status: 401 });
     }
 
-    const { list } = await req.json();
-
-    const postOwner = await db.post.findUnique({
+    const ownPost = await db.post.findUnique({
       where: {
         id: postId,
         userId: userId,
       },
     });
 
-    if (!postOwner) {
+    if (!ownPost) {
       return new NextResponse("Unauthorized access", { status: 401 });
     }
 
-    for (const item of list) {
-      await db.section.update({
-        where: {
-          id: item.id,
-          postId: postId,
-        },
-        data: {
-          position: item.position,
-        },
-      });
-    }
-
-    return new NextResponse("Success reording sections", {
-      status: 200,
-      statusText: "OK",
+    const postpatch = await db.post.update({
+      where: {
+        id: postId,
+      },
+      data: {
+        isPublished: false,
+      },
     });
+
+    return NextResponse.json(postpatch);
   } catch {
     console.error(
-      "POSTS/[POSTID]/SECTIONS/REORDER::PATCH API DB ACTION FAIL"
+      "POSTS/[POSTID]/UNPUBLISH::PATCH API DB ACTION FAIL"
     );
-
     return new NextResponse("Internal server error", {
       status: 500,
     });

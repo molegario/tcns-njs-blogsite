@@ -53,8 +53,7 @@ export async function DELETE(
     return NextResponse.json(deletedcourse);
   } catch {
     console.error(
-      "/POSTS/[POSTID]::DELETE::ERROR::",
-      "/POSTS/[POSTID]::DELETE DB action Failure."
+      "/POSTS/[POSTID]::DELETE DB ACTION FAIL"
     );
     return new NextResponse("Internal Server Error", { status: 500 });
   }

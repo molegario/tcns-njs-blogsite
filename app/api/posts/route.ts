@@ -22,7 +22,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(post);
   } catch (error) {
-    console.log("[POSTS]::POST", error);
+    console.log("POSTS::POST API DB ACTION FAIL", error);
     return new NextResponse("Internal Error", {
       status: 500,
     });
