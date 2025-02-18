@@ -55,7 +55,7 @@ const FeaturedPosts = async function () {
                     <hr className="border-t-2 border-gray-300 mb-6" />
                     <div className="p-1 mt-4">
                       <Card>
-                        <CardContent className="flex aspect-[4/5] items-center justify-center p-4"></CardContent>
+                        <CardContent className="flex aspect-[7/8] items-center justify-center p-4"></CardContent>
                       </Card>
                     </div>
                   </div>
@@ -67,7 +67,7 @@ const FeaturedPosts = async function () {
                     <hr className="border-t-2 border-gray-300 mb-6" />
                     <div className="p-1 mt-4">
                       <Card>
-                        <CardContent className="flex aspect-[4/5] items-center justify-center p-4"></CardContent>
+                        <CardContent className="flex aspect-[7/8] items-center justify-center p-4"></CardContent>
                       </Card>
                     </div>
                   </div>
@@ -79,7 +79,7 @@ const FeaturedPosts = async function () {
                     <hr className="border-t-2 border-gray-300 mb-6" />
                     <div className="p-1 mt-4">
                       <Card>
-                        <CardContent className="flex aspect-[4/5] items-center justify-center p-4"></CardContent>
+                        <CardContent className="flex aspect-[7/8] items-center justify-center p-4"></CardContent>
                       </Card>
                     </div>
                   </div>
