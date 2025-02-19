@@ -40,7 +40,9 @@ const FeaturedPosts = async function () {
               <div className="md:col-span-9 mb-2">
                 <div className="flex items-center gap-x-2 mb-2">
                   <IconBadge icon={Megaphone} size={"sm"} />
-                  <h3 className="text-lg uppercase">Currently featured</h3>
+                  <h3 className="text-xl uppercase font-black text-zinc-200">
+                    Currently featured
+                  </h3>
                 </div>
                 <hr className="border-t-2 border-gray-300 mb-6" />
                 <div className="flex items-center justify-center">
@@ -50,7 +52,9 @@ const FeaturedPosts = async function () {
                   <div className="md:col-span-2 mb-2">
                     <div className="flex items-center gap-x-2 mb-2">
                       <IconBadge icon={AlarmClock} size={"sm"} />
-                      <h3 className="text-lg uppercase">Latest article</h3>
+                      <h3 className="text-xl uppercase font-black text-zinc-200">
+                        Latest article
+                      </h3>
                     </div>
                     <hr className="border-t-2 border-gray-300 mb-6" />
                     <div className="p-1 mt-4">
@@ -62,7 +66,9 @@ const FeaturedPosts = async function () {
                   <div className="md:col-span-2 mb-2">
                     <div className="flex items-center gap-x-2 mb-2">
                       <IconBadge icon={Eye} size={"sm"} />
-                      <h3 className="text-lg uppercase">Most viewed</h3>
+                      <h3 className="text-xl uppercase font-black text-zinc-200">
+                        Most viewed
+                      </h3>
                     </div>
                     <hr className="border-t-2 border-gray-300 mb-6" />
                     <div className="p-1 mt-4">
@@ -74,7 +80,9 @@ const FeaturedPosts = async function () {
                   <div className="md:col-span-2 mb-2">
                     <div className="flex items-center gap-x-2 mb-2">
                       <IconBadge icon={MessageSquare} size={"sm"} />
-                      <h3 className="text-lg uppercase">Most commented</h3>
+                      <h3 className="text-xl uppercase font-black text-zinc-200">
+                        Most commented
+                      </h3>
                     </div>
                     <hr className="border-t-2 border-gray-300 mb-6" />
                     <div className="p-1 mt-4">
@@ -112,7 +120,9 @@ const FeaturedPosts = async function () {
               <div className="md:col-span-3 mb-8">
                 <div className="flex items-center gap-x-2 mb-2">
                   <IconBadge icon={Activity} size={"sm"} />
-                  <h3 className="text-lg uppercase">Content feed</h3>
+                  <h3 className="text-xl uppercase font-black text-zinc-200">
+                    Content feed
+                  </h3>
                 </div>
                 <hr className="border-t-2 border-gray-300 mb-6" />
                 <ListCarousel />
