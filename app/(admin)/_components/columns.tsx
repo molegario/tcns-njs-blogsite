@@ -20,7 +20,7 @@ export const columns: ColumnDef<Post>[] = [
     header: ({ column }) => {
       return (
         <Button
-          className="pl-0"
+          className="px-1 flex flex-row items-center"
           variant={"ghost"}
           onClick={() => {
             column.toggleSorting(column.getIsSorted() === "asc");
@@ -37,7 +37,7 @@ export const columns: ColumnDef<Post>[] = [
     header: ({ column }) => {
       return (
         <Button
-          className="pl-0"
+          className="px-1 flex flex-row items-center"
           variant={"ghost"}
           onClick={() => {
             column.toggleSorting(column.getIsSorted() === "asc");
@@ -67,7 +67,7 @@ export const columns: ColumnDef<Post>[] = [
     header: ({ column }) => {
       return (
         <Button
-          className="pl-0"
+          className="px-1 flex flex-row items-center"
           variant={"ghost"}
           onClick={() => {
             column.toggleSorting(column.getIsSorted() === "asc");
@@ -92,7 +92,7 @@ export const columns: ColumnDef<Post>[] = [
     header: ({ column }) => {
       return (
         <Button
-          className="pl-0"
+          className="px-1 flex flex-row items-center"
           variant={"ghost"}
           onClick={() => {
             column.toggleSorting(column.getIsSorted() === "asc");
@@ -144,7 +144,7 @@ export const columnsRedux: ColumnDef<Post>[] = [
     header: ({ column }) => {
       return (
         <Button
-          className="pl-0"
+          className="px-1 flex flex-row items-center"
           variant={"ghost"}
           onClick={() => {
             column.toggleSorting(column.getIsSorted() === "asc");
@@ -161,7 +161,7 @@ export const columnsRedux: ColumnDef<Post>[] = [
     header: ({ column }) => {
       return (
         <Button
-          className="pl-0"
+          className="px-1 flex flex-row items-center"
           variant={"ghost"}
           onClick={() => {
             column.toggleSorting(column.getIsSorted() === "asc");

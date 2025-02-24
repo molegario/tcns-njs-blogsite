@@ -33,21 +33,23 @@ const memberPage = async () => {
         <div className="flex items-center justify-between">
           <div className="w-full">
             <div className="flex items-center justify-between w-full">
-              <div className="flex flex-col gap-y-2">
+              <div className="flex flex-col gap-y-2 text-slate-200">
                 <h1 className="text-2xl font-medium">Member Settings Page</h1>
               </div>
             </div>
             <div className="grid grid-col-1 md:grid-cols-6 gap-6 mt-16">
               <div className="md:col-span-2">
-                <div className="flex items-center gap-x-2">
+                <div className="flex items-center gap-x-2 text-slate-200">
                   <IconBadge icon={ListChecks} />
                   <h3 className="text-xl">Member Details</h3>
                 </div>
-                {
-                  isAdmin && (
-                    <AcknowledgeAdminForm userId={userId} memberId={Member?.id ?? null} initialData={Member} />
-                  )
-                }
+                {isAdmin && (
+                  <AcknowledgeAdminForm
+                    userId={userId}
+                    memberId={Member?.id ?? null}
+                    initialData={Member}
+                  />
+                )}
                 <FullNameForm
                   userId={userId}
                   memberId={Member?.id ?? null}
@@ -65,7 +67,7 @@ const memberPage = async () => {
                 />
               </div>
               <div className="md:col-span-4">
-                <div className="flex items-center gap-x-2">
+                <div className="flex items-center gap-x-2 text-slate-200">
                   <IconBadge icon={BookHeart} />
                   <h3 className="text-xl">Profile Content</h3>
                 </div>

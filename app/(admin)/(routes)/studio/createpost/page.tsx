@@ -51,8 +51,8 @@ const CreatePostPage = () => {
   return (
     <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6">
       <div>
-        <h1 className="text-2xl">Title your article</h1>
-        <p className="text-sm text-slate-600">
+        <h1 className="text- text-slate-200">Title your article</h1>
+        <p className="text-sm text-slate-200">
           What will you name your article? You can always change it later.
         </p>
         <Form {...form}>
@@ -65,15 +65,16 @@ const CreatePostPage = () => {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Article Title</FormLabel>
+                  <FormLabel className="text-slate-200">Article Title</FormLabel>
                   <FormControl>
                     <Input
+                      className="bg-slate-200"
                       disabled={isSubmitting}
                       placeholder="e.g. 'Review of Canada's Best Poutine Places in 2025'"
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription>
+                  <FormDescription className="text-slate-200">
                     What <b>Common Nonsense</b> will you write about today?
                   </FormDescription>
                   <FormMessage />
@@ -83,6 +84,7 @@ const CreatePostPage = () => {
             <div className="flex items-center gap-x-2">
               <Link href="/studio">
                 <Button
+                  className="text-slate-200"
                   type="button"
                   variant="ghost"
                 >
@@ -90,6 +92,7 @@ const CreatePostPage = () => {
                 </Button>
               </Link>
               <Button
+                className="text-slate-200"
                 type="submit"
                 disabled={!isValid || isSubmitting}
               >

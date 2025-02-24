@@ -22,7 +22,7 @@ const VideoCarousel = () => {
           {Array.from({ length: 6 }).map((_, idx) => (
             <CarouselItem key={idx} className="md:basis-1/2 lg:basis-1/3">
               <Card>
-                <CardContent className="flex aspect-video items-center justify-center p-4">
+                <CardContent className="flex aspect-[10/8] items-center justify-center p-4">
                   <span className="text-3xl font-semibold">{idx + 1}</span>
                 </CardContent>
               </Card>

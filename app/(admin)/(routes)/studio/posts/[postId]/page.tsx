@@ -79,8 +79,8 @@ const PostsEditorPage = async (
     <div className="p-6">
       <div className="flex items-center justify-between">
         <div className="flex flex-col gap-y-2">
-          <h1 className="text-2xl font-medium">Edit Post</h1>
-          <span className="text-sm text-slate-700">
+          <h1 className="text-2xl font-medium text-slate-200">Edit Post</h1>
+          <span className="text-sm text-slate-200">
             Complete all fields {completedFields}
           </span>
         </div>
@@ -94,7 +94,7 @@ const PostsEditorPage = async (
         <div>
           <div className="flex items-center gap-x-2">
             <IconBadge icon={LayoutDashboard} />
-            <h2 className="text-xl">Post details</h2>
+            <h2 className="text-xl text-slate-200">Post details</h2>
           </div>
           <TitleForm initialData={Post} postId={Post.id} />
           <CategoryForm
@@ -112,7 +112,7 @@ const PostsEditorPage = async (
           <div>
             <div className="flex items-center gap-x-2">
               <IconBadge icon={ListChecks} />
-              <h2 className="text-xl">Post sections</h2>
+              <h2 className="text-xl text-slate-200">Post sections</h2>
             </div>
             <SectionsForm initialData={Post} postId={Post.id} />
           </div>
@@ -120,7 +120,7 @@ const PostsEditorPage = async (
           <div>
             <div className="flex items-center gap-x-2">
               <IconBadge icon={SquareCheckBig} />
-              <h2 className="text-xl">Post visibility</h2>
+              <h2 className="text-xl text-slate-200">Post visibility</h2>
             </div>
             <TagsForm initialData={Post} postId={Post.id} />
             <IsFeaturedForm initialData={Post} postId={Post.id} />

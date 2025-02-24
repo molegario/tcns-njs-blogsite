@@ -56,7 +56,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div>
+    <div className="bg-gray-400 p-2 rounded-sm">
       <div className="flex items-center py-4 mt-2 justify-between gap-x-2">
         <Input
           placeholder="Filter courses..."

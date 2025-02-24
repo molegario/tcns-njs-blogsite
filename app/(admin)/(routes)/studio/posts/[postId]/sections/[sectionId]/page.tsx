@@ -73,16 +73,16 @@ const SectionEditorPage = async (
           <div className="w-full">
             <Link
               href={`/studio/posts/${postId}`}
-              className="flex items-center text-sm hover:opacity-75 transition mb-6"
+              className="flex items-center text-sm hover:opacity-75 transition mb-6 text-slate-200"
             >
               <ArrowLeft className="h-6 w-6 mr-2 text-sm" />
               Back to post:{" "}
               <h2 className="font-bold italic">&quot;{Post.title}&quot;</h2>
             </Link>
             <div className="flex items-center justify-between w-full">
-              <div className="flex flex-col gap-y-2">
+              <div className="flex flex-col gap-y-2 text-slate-200">
                 <h1 className="text-2xl font-medium">Edit Post Section</h1>
-                <span className="text-sm text-slate-700">
+                <span className="text-sm">
                   Complete all fields {completionText}
                 </span>
               </div>
@@ -95,20 +95,36 @@ const SectionEditorPage = async (
             </div>
             <div className="grid grid-col-1 md:grid-cols-6 gap-6 mt-16">
               <div className="md:col-span-2">
-                <div className="flex items-center gap-x-2">
+                <div className="flex items-center gap-x-2 text-slate-200">
                   <IconBadge icon={SquareCheckBig} />
                   <h3 className="text-xl">Section Details</h3>
                 </div>
-                <SectionTitleForm postId={postId} sectionId={sectionId} initialData={Section} />
-                <SectionTagsForm postId={postId} sectionId={sectionId} initialData={Section} />
+                <SectionTitleForm
+                  postId={postId}
+                  sectionId={sectionId}
+                  initialData={Section}
+                />
+                <SectionTagsForm
+                  postId={postId}
+                  sectionId={sectionId}
+                  initialData={Section}
+                />
               </div>
               <div className="md:col-span-4">
-                <div className="flex items-center gap-x-2">
+                <div className="flex items-center gap-x-2 text-slate-200">
                   <IconBadge icon={LayoutDashboard} />
                   <h3 className="text-xl">Section Content</h3>
                 </div>
-                <SectionContentForm postId={postId} sectionId={sectionId} initialData={Section} />
-                <SectionImageForm postId={postId} sectionId={sectionId} initialData={Section} />
+                <SectionContentForm
+                  postId={postId}
+                  sectionId={sectionId}
+                  initialData={Section}
+                />
+                <SectionImageForm
+                  postId={postId}
+                  sectionId={sectionId}
+                  initialData={Section}
+                />
               </div>
             </div>
           </div>
